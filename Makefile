@@ -24,8 +24,6 @@ $(TARGET): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-clean: $(TARGET) $(OBJS)
-	rm -f $^
 
 .PHONY: all clean
 
@@ -45,3 +43,6 @@ $(TARGET_DEBUG): $(OBJ_DEBUG)
 run: $(TARGET)
 	./$<
 
+clean: 
+	rm -rf $(OBJS) $(OBJ_DEBUG) 
+	rm -rf $(TARGET_DEBUG) $(TARGET)

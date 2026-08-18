@@ -1,2 +1,4 @@
 DEBUG
 RUNME
+*.o
+*.log
