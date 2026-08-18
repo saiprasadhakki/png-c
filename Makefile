@@ -8,11 +8,14 @@ CFLAGS += -I./include
 LIBS = -lraylib -lm
 
 
-SRCS = $(wildcard src/*.c)
+SRCS = $(wildcard src/*.c) $(wildcard src/tinyfiledialog/*.c)
 
 OBJS = $(SRCS:%.c=%.o)
 
 TARGET := RUNME
+
+run: $(TARGET)
+	./$<
 
 all: CFLAGS += -O2
 all: $(TARGET)
@@ -29,13 +32,13 @@ clean: $(TARGET) $(OBJS)
 .PHONY: all clean
 
 TARGET_DEBUG := DEBUG
-OBJ_DEBUG = $(SRCS:%.c=%_d.o)
+OBJ_DEBUG = $(SRCS:%.c=%.d.o)
 
 debug: CFLAGS += -g -fsanitize=address
 debug: LDFLAGS += -g -fsanitize=address
 debug: $(TARGET_DEBUG)
 
-%_d.o: %.c
+%.d.o: %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
 $(TARGET_DEBUG): $(OBJ_DEBUG)
