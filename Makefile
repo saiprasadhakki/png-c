@@ -7,15 +7,13 @@ CFLAGS += -I./include
 
 LIBS = -lraylib -lm
 
+LDFLAGS = -L ./libs/
 
 SRCS = $(wildcard src/*.c) $(wildcard src/tinyfiledialog/*.c)
 
 OBJS = $(SRCS:%.c=%.o)
 
 TARGET := RUNME
-
-run: $(TARGET)
-	./$<
 
 all: CFLAGS += -O2
 all: $(TARGET)
@@ -43,3 +41,7 @@ debug: $(TARGET_DEBUG)
 
 $(TARGET_DEBUG): $(OBJ_DEBUG)
 	$(CC) $^ $(LDFLAGS) $(LIBS) -o $@
+
+run: $(TARGET)
+	./$<
+
