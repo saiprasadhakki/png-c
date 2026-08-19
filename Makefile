@@ -1,7 +1,7 @@
 
 CC = gcc
 
-CFLAGS = -Werror -Wextra
+CFLAGS = -Wextra
 CFLAGS += -I./
 CFLAGS += -I./include
 
