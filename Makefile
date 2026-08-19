@@ -1,17 +1,15 @@
 
 CC = gcc
 
-CFLAGS = -Wextra
+CFLAGS = -Werror -Wextra
 CFLAGS += -I./
 CFLAGS += -I./include
 
-LIBS = -lraylib -lm
+LIBS = -lm -lraylib
 
-ifeq ($(OS), Windows_NT)
 
-LDFLAGS = ./libs/raylib.dll
+LDFLAGS =
 
-endif
 
 SRCS = $(wildcard src/*.c) $(wildcard src/tinyfiledialog/*.c)
 
@@ -46,6 +44,22 @@ $(TARGET_DEBUG): $(OBJ_DEBUG)
 
 run: $(TARGET)
 	./$<
+
+
+CC_WIN = x86_64-w64-mingw32-gcc
+CFLAGS_WIN = -Wextra -I./ -I./include
+TARGET_WIN := RUNME.exe
+LIBS_WIN = -lm -lraylib -lopengl32 -lgdi32 -lwinmm -luser32 -lkernel32 -lshell32 -lcomdlg32 -lole32
+OBJS_WIN = $(SRCS:%.c=%.win.o)
+LDFLAGS_WIN = -L ./libs/win/
+
+win: $(TARGET_WIN)
+
+$(TARGET_WIN): $(OBJS_WIN)
+	$(CC_WIN) $^ $(LDFLAGS_WIN) $(LIBS_WIN) -o $@
+
+%.win.o: %.c
+	$(CC_WIN) $(CFLAGS_WIN) -c $< -o $@
 
 clean: 
 	rm -rf $(OBJS) $(OBJ_DEBUG) 

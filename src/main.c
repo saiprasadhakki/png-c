@@ -6,10 +6,14 @@
 #include "tinyfiledialog/tinyfiledialogs.h"
 
 
+#if defined (__linux__)
 #define STB_IMAGE_IMPLEMENTATION
+#endif
 #include "stb/stb_image.h"
 
+#if defined (__linux__)
 #define STB_IMAGE_WRITE_IMPLEMENTATION
+#endif
 #include "stb/stb_image_write.h"
 
 
@@ -73,7 +77,7 @@ void update_editor(struct nk_context *ctx) {
 int main() {
 
 
-    InitWindow(800, 600, "ImageGrayscaler");
+    InitWindow(800, 600, "PNG-C");
 
     Font font_ui = LoadFontEx("m5x7.ttf", 18, NULL, 0);
     struct nk_context *ctx = InitNuklearEx(font_ui, 18);
@@ -89,6 +93,7 @@ int main() {
         if (image_selected && !image_loaded) {
             // image_showing = LoadImage(curr_image_filepath);
             // image_texture = LoadTextureFromImage(image_showing);
+            // image_showing = LoadImageFromMemory("", const unsigned char *fileData, int dataSize)
             image_texture = LoadTexture(curr_image_filepath);
             image_loaded = 1;
         }
