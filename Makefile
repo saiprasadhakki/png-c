@@ -9,7 +9,7 @@ LIBS = -lraylib -lm
 
 ifeq ($(OS), Windows_NT)
 
-LDFLAGS = -L ./libs/
+LDFLAGS = ./libs/raylib.dll
 
 endif
 
