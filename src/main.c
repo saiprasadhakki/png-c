@@ -33,8 +33,8 @@ Texture2D image_texture;
 void update_editor(struct nk_context *ctx) {
     UpdateNuklear(ctx);
     if (nk_begin(ctx, "Toolbar - Press \"T\" to toggle", nk_rect(50, 50, 230, 250),
-                NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|
-                NK_WINDOW_MINIMIZABLE|NK_WINDOW_TITLE))
+                NK_WINDOW_BORDER|NK_WINDOW_MOVABLE|NK_WINDOW_SCALABLE|NK_WINDOW_TITLE|NK_WINDOW_MINIMIZABLE
+                ))
     {
 
         nk_layout_space_begin(ctx, NK_STATIC, 500, 64);

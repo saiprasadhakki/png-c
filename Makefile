@@ -7,7 +7,11 @@ CFLAGS += -I./include
 
 LIBS = -lraylib -lm
 
+ifeq ($(OS), Windows_NT)
+
 LDFLAGS = -L ./libs/
+
+endif
 
 SRCS = $(wildcard src/*.c) $(wildcard src/tinyfiledialog/*.c)
 
