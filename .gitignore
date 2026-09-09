@@ -1,5 +1,6 @@
 .gitignore
 DEBUG
 RUNME
+RUNME.exe
 *.o
 *.log

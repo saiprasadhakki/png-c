@@ -1,11 +1,14 @@
+# TODO: 
+# - enclose different os builds inside if guards
+# 
 
-CC = gcc
+CC := gcc
 
 CFLAGS = -Werror -Wextra
 CFLAGS += -I./
 CFLAGS += -I./include
 
-LIBS = -lm -lraylib
+LIBS = -lm -lraylib -lGL
 
 
 LDFLAGS =
